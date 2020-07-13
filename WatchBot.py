@@ -4,12 +4,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 import pyautogui
-extension_dir = r"C:\Users\CY\AppData\Roaming\Mozilla\Firefox\Profiles\vb20rt8e.default-release\extensions\{7be2ba16-0f1e-4d93-9ebc-5164397477a9}.xpi"
+#extension_dir = r"C:\Users\CY\AppData\Roaming\Mozilla\Firefox\Profiles\vb20rt8e.default-release\extensions\{7be2ba16-0f1e-4d93-9ebc-5164397477a9}.xpi"
 # option = webdriver.ChromeOptions()
 # option.add_argument("--user-data-dir="+r"C:\Users\CY\AppData\Local\Google\Chrome\User Data")
 # driver = webdriver.Chrome(chrome_options=option)
 driver = webdriver.Firefox()
-driver.install_addon(extension_dir, temporary=True)
+#driver.install_addon(extension_dir, temporary=True)
 driver.get("https://www.bjjnts.cn/login")
 driver.maximize_window()
 
@@ -18,7 +18,7 @@ while True:
     if signal == "ok":
         break
     else:
-        driver.quit()
+
         exit(0)
 
 
@@ -97,6 +97,13 @@ for i, url in enumerate(url_list):
             pass
         else:
             accept.click()
+        try:
+            face_startbtn = WebDriverWait(driver, 3, 0.5).until(
+                EC.presence_of_element_located((By.ID, "face_startbtn")))
+        except:
+            pass
+        else:
+            face_startbtn.click()
         progress = cur_li.find_element_by_tag_name("div").find_element_by_tag_name("a").find_element_by_tag_name("span").text
         if "100%" in progress:
             print("{} 学习完毕".format(video_name_list[i]))
