@@ -3,13 +3,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
-import pyautogui
-#extension_dir = r"C:\Users\CY\AppData\Roaming\Mozilla\Firefox\Profiles\vb20rt8e.default-release\extensions\{7be2ba16-0f1e-4d93-9ebc-5164397477a9}.xpi"
+# import pyautogui
+# extension_dir = r"C:\Users\CY\AppData\Roaming\Mozilla\Firefox\Profiles\vb20rt8e.default-release\extensions\{7be2ba16-0f1e-4d93-9ebc-5164397477a9}.xpi"
 # option = webdriver.ChromeOptions()
 # option.add_argument("--user-data-dir="+r"C:\Users\CY\AppData\Local\Google\Chrome\User Data")
 # driver = webdriver.Chrome(chrome_options=option)
 driver = webdriver.Firefox()
-#driver.install_addon(extension_dir, temporary=True)
+# driver.install_addon(extension_dir, temporary=True)
 driver.get("https://www.bjjnts.cn/login")
 driver.maximize_window()
 
@@ -78,8 +78,9 @@ for i, url in enumerate(url_list):
     play = course_study_videobox.find_element_by_tag_name("video")
     # play.click()
     sleep(10)
-    pyautogui.press('d')
+    # pyautogui.press('d')
     while True:
+        '''
         pyautogui.moveTo(900, 300, 2)
         pyautogui.moveTo(300, 300, 2)
 
@@ -90,16 +91,17 @@ for i, url in enumerate(url_list):
             print("确定")
         else:
             print("未发现确定")
+        '''
         try:
             # accept = driver.find_element_by_class_name("layui-layer-btn0")
-            accept = WebDriverWait(driver, 3, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, "layui-layer-btn0")))
+            accept = WebDriverWait(driver, 3, 0.5).until(EC.element_to_be_clickable((By.CLASS_NAME, "layui-layer-btn0")))
         except:
             pass
         else:
             accept.click()
         try:
             face_startbtn = WebDriverWait(driver, 3, 0.5).until(
-                EC.presence_of_element_located((By.ID, "face_startbtn")))
+                EC.element_to_be_clickable((By.ID, "face_startbtn")))
         except:
             pass
         else:
