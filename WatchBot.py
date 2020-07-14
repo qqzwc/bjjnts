@@ -14,7 +14,7 @@ driver.get("https://www.bjjnts.cn/login")
 driver.maximize_window()
 
 while True:
-    signal = input("登录完成后输入ok继续，输入quit退出")
+    signal = input("进入课程播放页面后输入ok继续，输入quit退出")
     if signal == "ok":
         break
     else:
