@@ -94,13 +94,13 @@ for i, url in enumerate(url_list):
         '''
         try:
             # accept = driver.find_element_by_class_name("layui-layer-btn0")
-            accept = WebDriverWait(driver, 3, 0.5).until(EC.element_to_be_clickable((By.CLASS_NAME, "layui-layer-btn0")))
+            accept = WebDriverWait(driver, 6, 0.5).until(EC.element_to_be_clickable((By.CLASS_NAME, "layui-layer-btn0")))
         except:
             pass
         else:
             accept.click()
         try:
-            face_startbtn = WebDriverWait(driver, 3, 0.5).until(
+            face_startbtn = WebDriverWait(driver, 6, 0.5).until(
                 EC.element_to_be_clickable((By.ID, "face_startbtn")))
         except:
             pass
