@@ -59,8 +59,24 @@ for li in li_list:
         print("next")
     print(span.text)
 
+try:
+    face_startbtn = WebDriverWait(driver, 6, 0.5).until(
+        EC.element_to_be_clickable((By.ID, "face_startbtn")))
+except:
+    pass
+else:
+    face_startbtn.click()
+
 for i, url in enumerate(url_list):
     driver.get(url)
+    try:
+        face_startbtn = WebDriverWait(driver, 6, 0.5).until(
+            EC.element_to_be_clickable((By.ID, "face_startbtn")))
+    except:
+        pass
+    else:
+        face_startbtn.click()
+    sleep(10)
     course_study_videomenu = WebDriverWait(driver, 10, 0.5).until(
         EC.presence_of_element_located((By.CLASS_NAME, "course_study_videomenu"))
     )
