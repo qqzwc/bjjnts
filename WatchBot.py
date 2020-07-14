@@ -8,7 +8,7 @@ from time import sleep
 # option = webdriver.ChromeOptions()
 # option.add_argument("--user-data-dir="+r"C:\Users\CY\AppData\Local\Google\Chrome\User Data")
 # driver = webdriver.Chrome(chrome_options=option)
-driver = webdriver.Firefox()
+driver = webdriver.Firefox(executable_path='.\geckodriver.exe')
 # driver.install_addon(extension_dir, temporary=True)
 driver.get("https://www.bjjnts.cn/login")
 driver.maximize_window()
@@ -24,12 +24,12 @@ while True:
 
 cur_url = driver.current_url
 url_template = cur_url.split("/")[:-1]
-print(url_template)
+# print(url_template)
 url_template = '/'.join(url_template)
-print(url_template)
+# print(url_template)
 first = cur_url.split("/")[-1]
-print(first)
-print(type(first))
+# print(first)
+# print(type(first))
 
 course_study_videomenu = WebDriverWait(driver, 10, 0.5).until(
     EC.presence_of_element_located((By.CLASS_NAME, "course_study_videomenu"))
@@ -38,13 +38,13 @@ new_demoul = course_study_videomenu.find_element_by_tag_name("ul")
 li_list = []
 li_list = new_demoul.find_elements_by_tag_name("li")
 video_num = len(li_list)
-print(video_num)
+print("共有{}个视频".format(video_num))
 first = int(first)
 url_list = []
 for i in range(0, video_num):
     index = str(first + i)
     url = url_template + "/" + index
-    print(url)
+    # print(url)
     url_list.append(url)
 video_name_list = []
 for li in li_list:
@@ -53,12 +53,13 @@ for li in li_list:
     h4 = a.find_element_by_tag_name("h4")
     video_name = h4.text.split("(")[0]
     video_name_list.append(video_name)
+    '''
     print(video_name)
     span = a.find_element_by_tag_name("span")
     if "100%"  in span.text:
         print("next")
     print(span.text)
-
+    '''
 try:
     face_startbtn = WebDriverWait(driver, 6, 0.5).until(
         EC.element_to_be_clickable((By.ID, "face_startbtn")))
@@ -68,6 +69,7 @@ else:
     face_startbtn.click()
 
 for i, url in enumerate(url_list):
+    driver.switch_to.window(driver.window_handles[0])
     driver.get(url)
     try:
         face_startbtn = WebDriverWait(driver, 6, 0.5).until(
@@ -89,7 +91,7 @@ for i, url in enumerate(url_list):
     else:
         cur_li.click()
     sleep(2)
-    print("正在学习 {}".format(video_name_list[i]))
+    print("正在学习第{}个视频 {}".format(i+1, video_name_list[i]))
     course_study_videobox = driver.find_element_by_class_name("course_study_videobox")
     play = course_study_videobox.find_element_by_tag_name("video")
     # play.click()
@@ -127,8 +129,11 @@ for i, url in enumerate(url_list):
             print("{} 学习完毕".format(video_name_list[i]))
             break
         else:
+            sleep(10)
+            '''
             s = 10
             while s > 0:
                 print(s)
                 s -= 1
                 sleep(1)
+            '''
