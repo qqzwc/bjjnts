@@ -113,17 +113,17 @@ for i, url in enumerate(url_list):
         try:
             # accept = driver.find_element_by_class_name("layui-layer-btn0")
             accept = WebDriverWait(driver, 6, 0.5).until(EC.element_to_be_clickable((By.CLASS_NAME, "layui-layer-btn0")))
+            accept.click()
         except:
             pass
-        else:
-            accept.click()
+
         try:
             face_startbtn = WebDriverWait(driver, 6, 0.5).until(
                 EC.element_to_be_clickable((By.ID, "face_startbtn")))
+            face_startbtn.click()
         except:
             pass
-        else:
-            face_startbtn.click()
+
         progress = cur_li.find_element_by_tag_name("div").find_element_by_tag_name("a").find_element_by_tag_name("span").text
         if "100%" in progress:
             print("{} 学习完毕".format(video_name_list[i]))
