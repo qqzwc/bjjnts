@@ -72,14 +72,14 @@ for i, url in enumerate(url_list):
     driver.switch_to.window(driver.window_handles[0])
     driver.get(url)
     try:
-        face_startbtn = WebDriverWait(driver, 6, 0.5).until(
+        face_startbtn = WebDriverWait(driver, 3, 0.5).until(
             EC.element_to_be_clickable((By.ID, "face_startbtn")))
     except:
         pass
     else:
         face_startbtn.click()
-    sleep(10)
-    course_study_videomenu = WebDriverWait(driver, 10, 0.5).until(
+
+    course_study_videomenu = WebDriverWait(driver, 3, 0.5).until(
         EC.presence_of_element_located((By.CLASS_NAME, "course_study_videomenu"))
     )
     new_demoul = course_study_videomenu.find_element_by_tag_name("ul")
@@ -95,7 +95,7 @@ for i, url in enumerate(url_list):
     course_study_videobox = driver.find_element_by_class_name("course_study_videobox")
     play = course_study_videobox.find_element_by_tag_name("video")
     # play.click()
-    sleep(10)
+
     # pyautogui.press('d')
     while True:
         '''
