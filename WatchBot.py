@@ -63,10 +63,10 @@ for li in li_list:
 try:
     face_startbtn = WebDriverWait(driver, 6, 0.5).until(
         EC.element_to_be_clickable((By.ID, "face_startbtn")))
+    face_startbtn.click()
 except:
     pass
-else:
-    face_startbtn.click()
+
 
 for i, url in enumerate(url_list):
     driver.switch_to.window(driver.window_handles[0])
@@ -74,10 +74,11 @@ for i, url in enumerate(url_list):
     try:
         face_startbtn = WebDriverWait(driver, 3, 0.5).until(
             EC.element_to_be_clickable((By.ID, "face_startbtn")))
+        face_startbtn.click()
     except:
         pass
-    else:
-        face_startbtn.click()
+
+
 
     course_study_videomenu = WebDriverWait(driver, 3, 0.5).until(
         EC.presence_of_element_located((By.CLASS_NAME, "course_study_videomenu"))
