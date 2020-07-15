@@ -78,8 +78,6 @@ for i, url in enumerate(url_list):
     except:
         pass
 
-
-
     course_study_videomenu = WebDriverWait(driver, 3, 0.5).until(
         EC.presence_of_element_located((By.CLASS_NAME, "course_study_videomenu"))
     )
@@ -90,7 +88,10 @@ for i, url in enumerate(url_list):
     if "100%" in progress:
         continue
     else:
-        cur_li.click()
+        try:
+            cur_li.click()
+        except:
+            pass
     sleep(2)
     print("正在学习第{}个视频 {}".format(i+1, video_name_list[i]))
     course_study_videobox = driver.find_element_by_class_name("course_study_videobox")
